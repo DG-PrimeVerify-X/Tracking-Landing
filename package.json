@@ -1,0 +1,8 @@
+{
+  "name": "dg-bhai-9x-tracker",
+  "private": true,
+  "version": "2.0.0",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.57.0"
+  }
+}
