@@ -15,7 +15,10 @@ export function cors(res, origin) {
   const allowed = process.env.ALLOWED_ORIGIN  "*";
 
   res.setHeader("Access-Control-Allow-Origin", allowed);
-  res.setHeader("Access-Control-Allow-Methods", "POST,GET,OPTIONS");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "POST,GET,OPTIONS"
+  );
   res.setHeader(
     "Access-Control-Allow-Headers",
     "Content-Type,X-Admin-Key"
@@ -28,9 +31,15 @@ export function clean(v, max = 500) {
 }
 
 export function fingerprint(req) {
-  const forwarded = req.headers["x-forwarded-for"]  "";
-  const ip = String(forwarded).split(",")[0].trim()  "unknown";
-  const ua = req.headers["user-agent"]  "";
+  const forwarded =
+    req.headers["x-forwarded-for"]  "";
+
+  const ip =
+    String(forwarded).split(",")[0].trim() 
+    "unknown";
+
+  const ua =
+    req.headers["user-agent"]  "";
 
   return cryptoHash(ip + "|" + ua);
 }
@@ -43,11 +52,16 @@ function cryptoHash(s) {
     h = Math.imul(h, 16777619);
   }
 
-  return ("00000000" + (h >>> 0).toString(16)).slice(-8);
+  return (
+    "00000000" +
+    (h >>> 0).toString(16)
+  ).slice(-8);
 }
 
 export function classify(req, body, recentClicks = []) {
-  const ua = req.headers["user-agent"]  "";
+  const ua =
+    req.headers["user-agent"]  "";
+
   const reasons = [];
 
   if (
@@ -57,7 +71,8 @@ export function classify(req, body, recentClicks = []) {
     reasons.push("bot-like user agent");
   }
 
-  const dwell = Number(body.dwellSeconds  0);
+  const dwell =
+    Number(body.dwellSeconds  0);
 
   if (dwell > 0 && dwell < 1) {
     reasons.push("sub-second dwell");
@@ -67,7 +82,7 @@ export function classify(req, body, recentClicks = []) {
     reasons.push("high click frequency");
   }
 
-  if (reasons.length > 0) {
+  if (reasons.length) {
     return {
       label: "suspicious",
       reasons
@@ -81,7 +96,8 @@ export function classify(req, body, recentClicks = []) {
 }
 
 export function adminAuth(req, res) {
-  const supplied = req.headers["x-admin-key"];
+  const supplied =
+    req.headers["x-admin-key"];
 
   if (
     !process.env.ADMIN_KEY 
@@ -90,6 +106,7 @@ export function adminAuth(req, res) {
     res.status(401).json({
       error: "Unauthorized"
     });
+
     return false;
   }
 
