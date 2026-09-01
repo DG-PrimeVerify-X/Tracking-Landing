@@ -15,7 +15,10 @@ export function cors(res, origin) {
   const allowed = process.env.ALLOWED_ORIGIN  "*";
 
   res.setHeader("Access-Control-Allow-Origin", allowed);
-  res.setHeader("Access-Control-Allow-Methods", "POST,GET,OPTIONS");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "POST,GET,OPTIONS"
+  );
   res.setHeader(
     "Access-Control-Allow-Headers",
     "Content-Type,X-Admin-Key"
@@ -31,6 +34,7 @@ export function fingerprint(req) {
   const forwarded = req.headers["x-forwarded-for"]  "";
   const ip =
     String(forwarded).split(",")[0].trim()  "unknown";
+
   const ua = req.headers["user-agent"]  "";
 
   return cryptoHash(ip + "|" + ua);
@@ -45,7 +49,8 @@ function cryptoHash(s) {
   }
 
   return (
-    "00000000" + (h >>> 0).toString(16)
+    "00000000" +
+    (h >>> 0).toString(16)
   ).slice(-8);
 }
 
@@ -70,7 +75,7 @@ export function classify(req, body, recentClicks = []) {
     reasons.push("high click frequency");
   }
 
-  if (reasons.length > 0) {
+  if (reasons.length) {
     return {
       label: "suspicious",
       reasons
@@ -93,6 +98,7 @@ export function adminAuth(req, res) {
     res.status(401).json({
       error: "Unauthorized"
     });
+
     return false;
   }
 
