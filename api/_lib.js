@@ -12,7 +12,7 @@ export const supabase = createClient(
 );
 
 export function cors(res, origin) {
-  const allowed = process.env.ALLOWED_ORIGIN  "*";
+  const allowed = process.env.ALLOWED_ORIGIN || "*";
 
   res.setHeader("Access-Control-Allow-Origin", allowed);
   res.setHeader(
