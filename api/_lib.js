@@ -29,9 +29,7 @@ export function clean(v, max = 500) {
 
 export function fingerprint(req) {
   const forwarded = req.headers["x-forwarded-for"]  "";
-  const ip =
-    String(forwarded).split(",")[0].trim()  "unknown";
-
+  const ip = String(forwarded).split(",")[0].trim()  "unknown";
   const ua = req.headers["user-agent"]  "";
 
   return cryptoHash(ip + "|" + ua);
@@ -69,7 +67,7 @@ export function classify(req, body, recentClicks = []) {
     reasons.push("high click frequency");
   }
 
-  if (reasons.length) {
+  if (reasons.length > 0) {
     return {
       label: "suspicious",
       reasons
