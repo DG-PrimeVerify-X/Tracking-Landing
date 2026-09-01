@@ -15,10 +15,7 @@ export function cors(res, origin) {
   const allowed = process.env.ALLOWED_ORIGIN  "*";
 
   res.setHeader("Access-Control-Allow-Origin", allowed);
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "POST,GET,OPTIONS"
-  );
+  res.setHeader("Access-Control-Allow-Methods", "POST,GET,OPTIONS");
   res.setHeader(
     "Access-Control-Allow-Headers",
     "Content-Type,X-Admin-Key"
@@ -34,6 +31,7 @@ export function fingerprint(req) {
   const forwarded = req.headers["x-forwarded-for"]  "";
   const ip =
     String(forwarded).split(",")[0].trim()  "unknown";
+
   const ua = req.headers["user-agent"]  "";
 
   return cryptoHash(ip + "|" + ua);
@@ -54,14 +52,11 @@ export function classify(req, body, recentClicks = []) {
   const ua = req.headers["user-agent"]  "";
   const reasons = [];
 
-  if (
-    !ua 
-    /bot|crawler|spider|headless|selenium|playwright|phantom/i.test(ua)
-  ) {
+  if (/bot|crawler|spider|headless|selenium|playwright|phantom/i.test(ua)) {
     reasons.push("bot-like user agent");
   }
 
-  const dwell = Number(body.dwellSeconds  0);
+  const dwell = Number(body?.dwellSeconds  0);
 
   if (dwell > 0 && dwell < 1) {
     reasons.push("sub-second dwell");
@@ -87,14 +82,10 @@ export function classify(req, body, recentClicks = []) {
 export function adminAuth(req, res) {
   const supplied = req.headers["x-admin-key"];
 
-  if (
-    !process.env.ADMIN_KEY 
-    supplied !== process.env.ADMIN_KEY
-  ) {
+  if (!process.env.ADMIN_KEY || supplied !== process.env.ADMIN_KEY) {
     res.status(401).json({
       error: "Unauthorized"
     });
-
     return false;
   }
 
