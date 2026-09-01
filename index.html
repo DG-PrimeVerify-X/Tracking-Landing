@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#000">
+<title>DG BHAI 9X</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{min-height:100%;font-family:Arial,Helvetica,sans-serif;background:#000;color:#fff}
+body{overflow-x:hidden}
+.bg{position:fixed;inset:0;overflow:hidden;background:radial-gradient(circle at 50% 25%,rgba(125,65,255,.2),transparent 35%),radial-gradient(circle at 20% 80%,rgba(0,160,255,.08),transparent 30%),#000}
+.bg:before{content:"";position:absolute;width:420px;height:420px;left:50%;top:35%;transform:translate(-50%,-50%);border-radius:50%;border:1px solid rgba(135,80,255,.14);box-shadow:0 0 90px rgba(125,65,255,.12),inset 0 0 80px rgba(125,65,255,.08);animation:pulse 5s ease-in-out infinite}
+.bg:after{content:"";position:absolute;width:700px;height:700px;left:50%;top:50%;transform:translate(-50%,-50%);border-radius:50%;border:1px solid rgba(255,255,255,.035);animation:rotate 35s linear infinite}
+.orb{position:absolute;border-radius:50%;filter:blur(2px);opacity:.45;animation:float 8s ease-in-out infinite}.one{width:7px;height:7px;background:#9d6cff;left:15%;top:22%}.two{width:5px;height:5px;background:#fff;left:80%;top:30%;animation-delay:2s}.three{width:6px;height:6px;background:#6a4cff;left:25%;top:75%;animation-delay:4s}.four{width:4px;height:4px;background:#fff;left:75%;top:78%;animation-delay:1s}
+@keyframes pulse{0%,100%{transform:translate(-50%,-50%) scale(.9);opacity:.5}50%{transform:translate(-50%,-50%) scale(1.08);opacity:1}}
+@keyframes rotate{to{transform:translate(-50%,-50%) rotate(360deg)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-30px)}}
+.page{position:relative;z-index:2;min-height:100vh;display:flex;justify-content:center;padding:55px 12px 30px}
+.card{width:100%;max-width:500px;padding:45px 22px 30px;border-radius:38px;background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.025));border:1px solid rgba(255,255,255,.1);box-shadow:0 25px 80px rgba(0,0,0,.75),inset 0 1px 0 rgba(255,255,255,.08);backdrop-filter:blur(18px)}
+.profile{display:flex;justify-content:center;margin-bottom:24px}.avatar-wrap{position:relative;width:174px;height:174px;display:flex;align-items:center;justify-content:center}.avatar-wrap:before{content:"";position:absolute;inset:-10px;border-radius:50%;background:conic-gradient(#7c4dff,#c084fc,#fff,#7c4dff);animation:spin 7s linear infinite;filter:drop-shadow(0 0 18px rgba(124,77,255,.45))}.avatar-wrap:after{content:"";position:absolute;inset:-5px;border-radius:50%;background:#000}.avatar{position:relative;z-index:2;width:158px;height:158px;border-radius:50%;object-fit:cover;border:5px solid #080808;background:#111}
+@keyframes spin{to{transform:rotate(360deg)}}
+.verified{position:absolute;z-index:5;right:-5px;bottom:7px;width:45px;height:45px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#8b5cf6,#6d3df0);border:4px solid #050505;box-shadow:0 0 20px rgba(124,77,255,.7);font-size:23px;font-weight:bold}
+h1{text-align:center;font-family:Georgia,"Times New Roman",serif;font-size:42px;line-height:1.05;letter-spacing:-1px;margin-bottom:15px}.underline{width:100px;height:5px;margin:0 auto 26px;border-radius:20px;background:linear-gradient(90deg,transparent,#a678ff,#fff,#a678ff,transparent);box-shadow:0 0 18px rgba(140,90,255,.5)}
+.subtitle{text-align:center;color:#a9a9b5;font-size:17px;line-height:1.55;font-weight:600;margin-bottom:30px}
+.telegram-btn{position:relative;width:100%;height:66px;border:0;border-radius:22px;color:#fff;cursor:pointer;overflow:hidden;font-size:20px;font-weight:800;background:linear-gradient(100deg,#6542ed,#934cf5,#7048ee);box-shadow:0 15px 35px rgba(113,70,240,.38),inset 0 1px 0 rgba(255,255,255,.25);transition:transform .18s}.telegram-btn:active{transform:scale(.97)}.telegram-btn:before{content:"";position:absolute;top:0;left:-120%;width:80%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);transform:skewX(-20deg);animation:shine 3.5s infinite}@keyframes shine{0%{left:-120%}45%,100%{left:140%}}.btn-content{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;gap:12px}.telegram-icon{font-size:25px}.free-text{text-align:center;color:#858595;font-size:14px;font-weight:600;margin-top:18px}
+.divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);margin:34px 0 30px}.offer{display:flex;align-items:center;justify-content:center;gap:25px}.timer{width:125px;height:125px;border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative;background:conic-gradient(#8959ff var(--progress),rgba(255,255,255,.07) 0);box-shadow:0 0 30px rgba(124,77,255,.12)}.timer:before{content:"";position:absolute;inset:8px;border-radius:50%;background:#070707}#countdown{position:relative;z-index:2;font-size:34px;font-weight:800}.offer-info{min-width:150px}.offer-title{color:#b88dff;font-size:13px;font-weight:900;letter-spacing:4px;margin-bottom:8px}.seconds{color:#858595;font-size:15px;font-weight:600;margin-bottom:13px}.live{display:inline-flex;align-items:center;gap:8px;padding:8px 13px;border-radius:30px;color:#b8e8d1;background:rgba(50,190,120,.1);border:1px solid rgba(80,210,150,.22);font-size:13px;font-weight:700}.live-dot{width:8px;height:8px;border-radius:50%;background:#43d497;box-shadow:0 0 10px #43d497;animation:livepulse 1.5s infinite}@keyframes livepulse{50%{opacity:.45;transform:scale(.7)}}
+.footer{text-align:center;color:#4f4f59;font-size:11px;margin-top:28px}.toast{position:fixed;z-index:100;left:50%;bottom:25px;transform:translate(-50%,30px);opacity:0;pointer-events:none;padding:12px 18px;border-radius:30px;background:#171717;border:1px solid rgba(255,255,255,.1);font-size:13px;font-weight:600;transition:.3s;white-space:nowrap}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:380px){.page{padding:35px 10px 25px}.card{padding:40px 17px 28px;border-radius:30px}h1{font-size:35px}.avatar-wrap{width:150px;height:150px}.avatar{width:136px;height:136px}.verified{width:40px;height:40px;font-size:20px}.offer{gap:15px}.timer{width:105px;height:105px}#countdown{font-size:29px}}
+</style>
+</head>
+<body>
+<div class="bg"><div class="orb one"></div><div class="orb two"></div><div class="orb three"></div><div class="orb four"></div></div>
+<main class="page"><section class="card">
+<div class="profile"><div class="avatar-wrap">
+<img class="avatar" src="https://i.supaimg.com/4ff64cd0-ca42-4626-b462-713427932b6e/88018c0d-ca02-4a91-b7b8-b82168010d7e.png" alt="DG BHAI 9X">
+<div class="verified">✓</div>
+</div></div>
+<h1>DG BHAI 9X</h1><div class="underline"></div>
+<p class="subtitle">Daily premium updates, straight to your Telegram.</p>
+<button class="telegram-btn" id="telegramButton"><span class="btn-content"><span class="telegram-icon">✈</span><span>Join Telegram</span></span></button>
+<div class="free-text">Free to join · One tap to open Telegram</div>
+<div class="divider"></div>
+<div class="offer"><div class="timer" id="timerCircle" style="--progress:100%"><span id="countdown">30</span></div>
+<div class="offer-info"><div class="offer-title">OFFER ENDS IN</div><div class="seconds">Seconds remaining</div><div class="live"><span class="live-dot"></span>Live now</div></div></div>
+<div class="footer">DG BHAI 9X · Telegram Community</div>
+</section></main>
+<div class="toast" id="toast">Opening Telegram...</div>
+<script>
+const TELEGRAM_URL="https://t.me/+tLts7R4RoHI2NDE9", COUNTDOWN_SECONDS=30;
+const p=new URLSearchParams(location.search);
+const data={
+ sessionId:sessionStorage.getItem("dg9x_session")||crypto.randomUUID(),
+ ref:p.get("ref")||p.get("source")||p.get("utm_source")||"direct",
+ utm_medium:p.get("utm_medium")||"none",
+ utm_campaign:p.get("utm_campaign")||"none",
+ utm_content:p.get("utm_content")||"none",
+ landingPage:location.href,
+ timestamp:new Date().toISOString()
+};
+sessionStorage.setItem("dg9x_session",data.sessionId);
+fetch("/api/visit",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data),keepalive:true}).catch(()=>{});
+let remaining=Number(sessionStorage.getItem("dg9x_timer")||COUNTDOWN_SECONDS);
+const countdown=document.getElementById("countdown"), circle=document.getElementById("timerCircle");
+function tick(){countdown.textContent=remaining;circle.style.setProperty("--progress",(remaining/COUNTDOWN_SECONDS*100)+"%");if(remaining>0){remaining--;sessionStorage.setItem("dg9x_timer",remaining)}} tick();setInterval(tick,1000);
+document.getElementById("telegramButton").onclick=()=>{
+const click={...data,timestamp:new Date().toISOString(),event:"telegram_click"};
+fetch("/api/click",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(click),keepalive:true}).catch(()=>{});
+document.getElementById("toast").classList.add("show");
+setTimeout(()=>location.href=TELEGRAM_URL,250);
+};
+</script>
+</body>
+</html>

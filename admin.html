@@ -1,0 +1,31 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DG BHAI 9X Analytics</title>
+<style>
+body{margin:0;background:#080808;color:#eee;font:14px Arial;padding:20px}.wrap{max-width:1100px;margin:auto}h1{font-size:26px}.top{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}input,button{background:#151515;color:#fff;border:1px solid #333;border-radius:10px;padding:11px}button{cursor:pointer}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}.card{background:#121212;border:1px solid #242424;border-radius:16px;padding:16px}.n{font-size:28px;font-weight:800;margin-top:6px}.ok{color:#68e0a2}.bad{color:#ff8b8b}table{width:100%;border-collapse:collapse;margin-top:15px;background:#101010}th,td{text-align:left;padding:9px;border-bottom:1px solid #242424;font-size:12px}small{color:#888}.section{margin-top:28px}.pill{padding:4px 8px;border-radius:20px;background:#202020}.real{color:#68e0a2}.sus{color:#ff8b8b}
+</style></head><body><div class="wrap">
+<h1>DG BHAI 9X — Analytics</h1>
+<div class="top"><input id="key" type="password" placeholder="ADMIN_KEY"><button onclick="loadAll()">Refresh</button></div>
+<div class="grid">
+<div class="card">Visits<div class="n" id="visits">—</div></div>
+<div class="card">Unique Visitors<div class="n" id="unique">—</div></div>
+<div class="card">Telegram Clicks<div class="n" id="clicks">—</div></div>
+<div class="card">CTR<div class="n" id="ctr">—</div></div>
+<div class="card">Likely Real<div class="n ok" id="real">—</div></div>
+<div class="card">Suspicious<div class="n bad" id="sus">—</div></div>
+</div>
+<div class="section card"><b>Sources — last 24h</b><pre id="sources">—</pre></div>
+<div class="section"><h2>Recent Clicks</h2><table><thead><tr><th>Time</th><th>Source</th><th>Classification</th><th>Reason</th></tr></thead><tbody id="rows"></tbody></table></div>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+async function api(url){const r=await fetch(url,{headers:{"x-admin-key":$("key").value}});if(!r.ok)throw Error("Unauthorized");return r.json()}
+async function loadAll(){try{
+ const s=await api("/api/stats"),e=await api("/api/events");
+ $("visits").textContent=s.visits;$("unique").textContent=s.uniqueVisitors;$("clicks").textContent=s.clicks;
+ $("ctr").textContent=s.ctr+"%";$("real").textContent=s.likelyReal;$("sus").textContent=s.suspicious;
+ $("sources").textContent=JSON.stringify(s.sources,null,2);
+ $("rows").innerHTML=e.clicks.map(x=>`<tr><td>${new Date(x.timestamp).toLocaleString()}</td><td>${esc(x.ref||"direct")}</td><td class="${x.classification==="likely_real"?"real":"sus"}">${x.classification}</td><td>${esc((x.reasons||[]).join(", ")||"—")}</td></tr>`).join("");
+}catch(e){alert("Wrong ADMIN_KEY or server unavailable")}}
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+</script></body></html>
